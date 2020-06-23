@@ -2,20 +2,57 @@
 //  ContentView.swift
 //  Sandwiches
 //
-//  Created by Japneet Singh on /236/20.
+//  Created by Japneet Singh on 23///6/20.
 //  Copyright © 2020 Japneet Singh. All rights reserved.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    var sandwiches: [Sandwich] = []
+    
     var body: some View {
-        Text("Hello, World!")
+        NavigationView{
+            List{
+                ForEach(sandwiches){ sandwich in
+                        SandwichCell(sandwich: sandwich)
+                }
+                HStack(alignment: .top) {
+                    Spacer()
+                    Text("\(sandwiches.count) Sandwiches")
+                        .foregroundColor(.secondary)
+                        .navigationBarTitle("Sandwiches")
+                    Spacer()
+                }
+                
+            }
+            
+            Text("Select a sandwich from the sidebar")
+                .font(.largeTitle)
+    }
+        
+    
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(sandwiches: testData)
+    }
+}
+
+struct SandwichCell: View {
+    var sandwich: Sandwich
+    var body: some View {
+        NavigationLink(destination: SandwichDetail(sandwich: sandwich)){
+            Image(systemName: "photo").cornerRadius(8)
+            VStack(alignment: .leading) {
+                Text(sandwich.name)
+                    .multilineTextAlignment(.leading)
+                Text("\(sandwich.ingredientCount)  ingredients")
+                    .foregroundColor(.secondary)
+                    .font(.subheadline)
+            }
+        }
     }
 }
