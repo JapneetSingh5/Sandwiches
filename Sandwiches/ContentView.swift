@@ -12,32 +12,33 @@ struct ContentView: View {
     var sandwiches: [Sandwich] = []
     
     var body: some View {
-        NavigationView{
-            List{
-                ForEach(sandwiches){ sandwich in
+            NavigationView{
+                List{
+                    ForEach(sandwiches){ sandwich in
                         SandwichCell(sandwich: sandwich)
-                }
-                HStack(alignment: .top) {
-                    Spacer()
-                    Text("\(sandwiches.count) Sandwiches")
-                        .foregroundColor(.secondary)
-                        .navigationBarTitle("Sandwiches")
-                    Spacer()
+                    }
+                    HStack(alignment: .top) {
+                        Spacer()
+                        Text("\(sandwiches.count) Sandwiches")
+                            .foregroundColor(.secondary)
+                            .navigationTitle("Sandwiches")
+                        Spacer()
+                    }
+                    
                 }
                 
-            }
+                Text("Select a sandwich from the sidebar")
+                    .font(.largeTitle)
+        }
             
-            Text("Select a sandwich from the sidebar")
-                .font(.largeTitle)
-    }
-        
-    
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(sandwiches: testData)
+            .preferredColorScheme(.dark)
+            .previewDevice("iPhone 11 Pro")
     }
 }
 

@@ -14,6 +14,7 @@ class SandwichStore: ObservableObject{
     init(sandwiches: [Sandwich] = [] ){
         self.sandwiches = sandwiches
     }
-
-    let testStore = SandwichStore(sandwiches: testData)
 }
+
+let testStore = SandwichStore(sandwiches: testData)
+
